@@ -11,7 +11,6 @@ function getRepoContributors(repoOwner, repoName, cb) {
     headers: {
       'User-Agent': 'request',
       'Authorization': 'token' + token.GITHUB_TOKEN
-
     }
   };
 
@@ -21,7 +20,16 @@ function getRepoContributors(repoOwner, repoName, cb) {
 }
 
 getRepoContributors("jquery", "jquery", function(err, result) {
-  console.log("Errors:", err);
-  console.log("Result:", result);
+  //console.log("Errors:", err);
+  var stringed = JSON.parse(result);
+  console.log("Result:", stringed);
+
+  // var myUrl = stringed.filter(function(amount) {
+  //   return stringed.avatar_url;
+  //   console.log("Result:", myUrl);
+  //})
+  stringed.forEach(function(obj) {
+    console.log("Result:" + obj.avatar_url);
+  })
 });
 
